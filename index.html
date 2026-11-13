@@ -785,9 +785,7 @@ function summary(){var lines=[],cnt=0;ORDER.forEach(function(k){var items=Object
  var notesOnly=Object.keys(st).filter(function(n){return !st[n].s&&st[n].note});
  if(notesOnly.length){lines.push('הערות:');notesOnly.forEach(function(n){lines.push('- '+n+' '+TITLES[n]+' | '+st[n].note)})}
  document.getElementById('sumtxt').textContent=cnt?('סימנת '+cnt+' תסריטים. לחיצה על הכפתור מעתיקה הכול, ואז מדביקים לי בצ׳אט.'):'עוד לא סימנת אף תסריט. מתחת לכל תסריט אפשר לבחור: צולם, לא טוב, למחוק או לערוך.';
- return 'סטטוס תסריטים לטלפרומפטר:
-'+(lines.length?lines.join('
-'):'(אין בחירות עדיין)')}
+ return 'סטטוס תסריטים לטלפרומפטר:\n'+(lines.length?lines.join('\n'):'(אין בחירות עדיין)')}
 document.querySelectorAll('.st button').forEach(function(b){b.addEventListener('click',function(){var n=b.getAttribute('data-n'),s=b.getAttribute('data-s');st[n]=st[n]||{};st[n].s=(st[n].s===s)?'':s;save();paint(n);summary()})});
 document.querySelectorAll('.note').forEach(function(i){var n=i.getAttribute('data-n');if(st[n]&&st[n].note)i.value=st[n].note;i.addEventListener('input',function(){st[n]=st[n]||{};st[n].note=i.value.trim();save();summary()})});
 Object.keys(TITLES).forEach(paint);summary();
